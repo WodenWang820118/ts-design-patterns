@@ -30,3 +30,8 @@ export function demoFactory() {
   const n2 = NotificationFactory.create("sms");
   n2.send();
 }
+
+// Run demo if this file is executed directly
+if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
+  demoFactory();
+}

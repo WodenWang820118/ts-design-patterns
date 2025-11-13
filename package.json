@@ -5,12 +5,15 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "node src/index.ts",
-    "run:examples": "node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "pnpx tsx src/index.ts",
+    "run:examples": "pnpx tsx src/index.ts",
+    "test": "pnpx tsx test/adapter.test.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.14.0"
+  "packageManager": "pnpm@10.14.0",
+  "devDependencies": {
+    "@types/node": "^24.10.1"
+  }
 }

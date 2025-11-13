@@ -11,7 +11,7 @@ class SimpleStream implements Stream {
 }
 
 class UppercaseDecorator implements Stream {
-  private inner: Stream;
+  private readonly inner: Stream;
   constructor(inner: Stream) {
     this.inner = inner;
   }
@@ -21,8 +21,8 @@ class UppercaseDecorator implements Stream {
 }
 
 class PrefixDecorator implements Stream {
-  private inner: Stream;
-  private prefix: string;
+  private readonly inner: Stream;
+  private readonly prefix: string;
   constructor(inner: Stream, prefix = "[pref]") {
     this.inner = inner;
     this.prefix = prefix;
@@ -37,4 +37,9 @@ export function demoDecorator() {
   const stream = new SimpleStream();
   const decorated = new PrefixDecorator(new UppercaseDecorator(stream));
   decorated.write("hello decorators");
+}
+
+// Run demo if this file is executed directly
+if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
+  demoDecorator();
 }

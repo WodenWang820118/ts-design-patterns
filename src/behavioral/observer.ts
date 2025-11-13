@@ -3,7 +3,7 @@
 type Listener = (...args: any[]) => void;
 
 class Emitter {
-  private listeners = new Map<string, Listener[]>();
+  private readonly listeners = new Map<string, Listener[]>();
 
   on(event: string, fn: Listener) {
     const arr = this.listeners.get(event) ?? [];
@@ -24,4 +24,9 @@ export function demoObserver() {
     console.log(`received from ${from}: ${text}`);
   });
   e.emit("msg", "alice", "hello!");
+}
+
+// Run demo if this file is executed directly
+if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
+  demoObserver();
 }

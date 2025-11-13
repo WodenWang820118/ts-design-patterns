@@ -4,6 +4,17 @@ import { demoAdapter } from "./structural/adapter.ts";
 import { demoDecorator } from "./structural/decorator.ts";
 import { demoStrategy } from "./behavioral/strategy.ts";
 import { demoObserver } from "./behavioral/observer.ts";
+import { demoBuilder } from "./creational/builder.ts";
+import { demoPrototype } from "./creational/prototype.ts";
+import { demoAbstractFactory } from "./creational/abstractFactory.ts";
+import { demoBridge } from "./structural/bridge.ts";
+import { demoComposite } from "./structural/composite.ts";
+import { demoProxy } from "./structural/proxy.ts";
+import { demoFlyweight } from "./structural/flyweight.ts";
+import { demoCommand } from "./behavioral/command.ts";
+import { demoState } from "./behavioral/state.ts";
+import { demoIterator } from "./behavioral/iterator.ts";
+import { demoTemplate } from "./behavioral/template.ts";
 
 function runHeading(title: string) {
   console.log("\n=== " + title + " ===");
@@ -36,3 +47,47 @@ demoStrategy();
 // Observer
 runHeading("Observer");
 demoObserver();
+
+// Builder
+runHeading("Builder");
+demoBuilder();
+
+// Prototype
+runHeading("Prototype");
+demoPrototype();
+
+// Abstract Factory
+runHeading("Abstract Factory");
+demoAbstractFactory();
+
+// Bridge
+runHeading("Bridge");
+demoBridge();
+
+// Composite
+runHeading("Composite");
+demoComposite();
+
+// Proxy
+runHeading("Proxy");
+demoProxy();
+
+// Flyweight
+runHeading("Flyweight");
+demoFlyweight();
+
+// Command
+runHeading("Command");
+demoCommand();
+
+// State
+runHeading("State");
+demoState();
+
+// Iterator
+runHeading("Iterator");
+demoIterator();
+
+// Template
+runHeading("Template");
+demoTemplate();

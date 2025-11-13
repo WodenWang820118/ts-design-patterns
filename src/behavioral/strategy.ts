@@ -6,7 +6,7 @@ const asc: SortStrategy = (arr) => [...arr].sort((a, b) => a - b);
 const desc: SortStrategy = (arr) => [...arr].sort((a, b) => b - a);
 
 class Sorter {
-  private strategy: SortStrategy;
+  private readonly strategy: SortStrategy;
   constructor(strategy: SortStrategy) {
     this.strategy = strategy;
   }
@@ -22,4 +22,9 @@ export function demoStrategy() {
   console.log("asc:", ascSorter.sort(data));
   const descSorter = new Sorter(desc);
   console.log("desc:", descSorter.sort(data));
+}
+
+// Run demo if this file is executed directly
+if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
+  demoStrategy();
 }
