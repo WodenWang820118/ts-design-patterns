@@ -4,9 +4,6 @@
 // calls to the current State instance which is free to transition the Context
 // to another State.
 
-import { fileURLToPath } from "url";
-import path from "path";
-
 interface State {
   readonly name: string;
   start(ctx: Context): void;
@@ -86,41 +83,8 @@ export function demoState() {
   ctx.status();
 }
 
-// If this module is executed directly (not required by tests), run the demo.
-// (Keep this side-effect minimal; tests can import demoState and run it.)
-// Note: avoid executing automatically during import in larger apps; this is
-// fine here for a small demo repository.
-// Detect execution as the entry script in both CommonJS and ESM environments.
-// - CommonJS: (require && require.main === module)
-// - ESM (used by `tsx` / package.json `type: "module"`): compare
-//   resolved `process.argv[1]` with this module's file path.
-const runDemoIfMain = () => {
-  try {
-    // CommonJS check (will be false in ESM)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    // @ts-ignore
-    if (typeof require !== "undefined" && (require as any).main === module) {
-      demoState();
-      return;
-    }
-
-    // ESM: compare process.argv[1] (entry) with this file's path
-    const entry =
-      process.argv && process.argv[1] ? path.resolve(process.argv[1]) : "";
-    const thisFile = path.resolve(fileURLToPath(import.meta.url));
-    if (
-      entry === thisFile ||
-      entry.endsWith(
-        `${path.sep}src${path.sep}behavioral${path.sep}state.ts`
-      ) ||
-      entry.endsWith("/src/behavioral/state.ts")
-    ) {
-      demoState();
-    }
-  } catch (err) {
-    // avoid throwing when runtime environment differs; don't block imports
-    // if detection fails, the demo simply won't run.
-  }
-};
-
-runDemoIfMain();
+// Run demo if this file is executed directly (simple ESM-aware check).
+// This matches the style used across other pattern demo files in this repo.
+if (import.meta.url === `file:///${process.argv[1].replaceAll("\\", "/")}`) {
+  demoState();
+}
